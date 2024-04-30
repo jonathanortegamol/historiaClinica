@@ -65,7 +65,7 @@ window.addEventListener('load',updateTable);
 window.addEventListener('load',DeleteData);
 
 function addData(){
-    if(validateData()==true && isValidCI(document.getElementById('cedula').value)){
+    if(validateData()==true && isValidCI(document.getElementById('cedula').value) && validarFechaYCalcularEdad()==true){
         datos.push({ci:document.getElementById('cedula').value,
         nombre:document.getElementById('nombre').value,
         apellido:document.getElementById('apellido').value,
@@ -100,7 +100,7 @@ function updateTable(){
     var datosLocalStorage = JSON.parse(localStorage.getItem("localData"));
     var datosActuales = datos.concat(datosLocalStorage);
     tbl.tBodies[0].innerHTML='';
-    
+
     // Iterar sobre los datos y agregar filas a la tabla
     for(i=0; i<datosActuales.length-1; i++){
         var r = myBody.insertRow();
@@ -135,7 +135,6 @@ function isValidCI(ci) {
 		individual = ci.toString().substring(position, position + 1)
 
 		if(isNaN(individual)) {
-			console.log(ci, position,individual, isNaN(individual))
 			isNumeric=false;				
 			break;			
 		} else {
@@ -171,8 +170,7 @@ function isValidCI(ci) {
 
 	if(isNumeric) {	
 		// El total debe ser igual al último número de la cédula
-		console.log(ci, total, individual);
-		console.log(ci, typeof ci, ci.length)
+		
 		// La cédula debe contener al menos 10 dígitos
 		if(ci.toString().length != 10) { 
 			alert("La c\u00E9dula debe ser de: 10 d\u00EDgitos.");
@@ -190,8 +188,6 @@ function isValidCI(ci) {
 			alert("La c\u00E9dula ingresada no es v\u00E1lida.");
 			return false;
 		} 
-
-		console.log('cédula válida', ci);
 		return true;			
 	}
 
@@ -199,3 +195,26 @@ function isValidCI(ci) {
 	alert("El dato solo puede contener numeros.");
 	return false;
 }
+
+function validarFechaYCalcularEdad() {
+    var fechaActual = new Date();
+    var fechaIngresada = new Date(document.getElementById('nacimiento').value);
+
+    if (fechaIngresada > fechaActual) {
+        alert("La fecha de nacimiento no puede ser mayor que la fecha actual.");
+        return false;
+    }else{true}
+
+    var diferencia = fechaActual - fechaIngresada;
+
+    var años = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 365.25));
+    var meses = Math.floor((diferencia % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * (365.25 / 12)));
+    var dias = Math.floor((diferencia % (1000 * 60 * 60 * 24 * (365.25 / 12))) / (1000 * 60 * 60 * 24));
+    var horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+
+    alert("Edad: " + años + " años, " + meses + " meses, " + dias + " días, " + horas + " horas, " + minutos + " minutos.");
+}
+
+
+//Cargar tabla pacientes
