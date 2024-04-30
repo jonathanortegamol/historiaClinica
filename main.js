@@ -65,7 +65,8 @@ window.addEventListener('load',updateTable);
 window.addEventListener('load',DeleteData);
 
 function addData(){
-    if(validateData()==true && isValidCI(document.getElementById('cedula').value) && validarFechaYCalcularEdad()==true){
+    if(validateData()==true && isValidCI(document.getElementById('cedula').value) && validarFechaYCalcularEdad()==true 
+        && cbxCiudades.value!=="Escoja una Ciudad"){
         datos.push({ci:document.getElementById('cedula').value,
         nombre:document.getElementById('nombre').value,
         apellido:document.getElementById('apellido').value,
@@ -76,6 +77,7 @@ function addData(){
         ciudad:document.getElementById('ciudad').value
         });
         updateTable();
+        document.getElementById('form-cliente').reset();
     }
 }  
 
@@ -203,17 +205,18 @@ function validarFechaYCalcularEdad() {
     if (fechaIngresada > fechaActual) {
         alert("La fecha de nacimiento no puede ser mayor que la fecha actual.");
         return false;
-    }else{true}
+    }else{
+        var diferencia = fechaActual - fechaIngresada;
 
-    var diferencia = fechaActual - fechaIngresada;
+        var años = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 365.25));
+        var meses = Math.floor((diferencia % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * (365.25 / 12)));
+        var dias = Math.floor((diferencia % (1000 * 60 * 60 * 24 * (365.25 / 12))) / (1000 * 60 * 60 * 24));
+        var horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
 
-    var años = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 365.25));
-    var meses = Math.floor((diferencia % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * (365.25 / 12)));
-    var dias = Math.floor((diferencia % (1000 * 60 * 60 * 24 * (365.25 / 12))) / (1000 * 60 * 60 * 24));
-    var horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-
-    alert("Edad: " + años + " años, " + meses + " meses, " + dias + " días, " + horas + " horas, " + minutos + " minutos.");
+        alert("Edad: " + años + " años, " + meses + " meses, " + dias + " días, " + horas + " horas, " + minutos + " minutos.");
+        return true;
+    }
 }
 
 
