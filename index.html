@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Clínica</title>
+
+    <link rel="stylesheet" href="./styles.css">
+    
+    
+    
+</head>
+<body>
+    
+    <!--Header-->
+    <header class="bg-secondary-subtle">
+        <div class="container">
+            <h1 class="display-1 text-center">Historia Clínica</h1>
+            <h2 class="border-bottom border-primary border-3 pb-2"></h2>
+        </div>
+    </header>
+
+    <!--Datos Personales-->
+    <section class="bg-white-subtle ">  
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" >
+                    <div class="row">
+                         <div class="col">
+                            <img id="profile-pic" src="./images/profile.png" class="mt-2 rounded img-fluid mx-auto d-block">
+                         </div>
+                         <div class="w-100"></div>
+                         <div class="col">
+                            <label class="mt-2 btn btn-primary mx-auto d-block" for="get-image">Actualizar Imagen</label>
+                            <input id="get-image" type="file" accept="image/jpeg, /image/png, /image/jpg">
+                         </div>
+                    </div>
+                </div>
+                <div class=" mt-2 col-md-8 shadow p-3 mb-5 bg-white rounded">
+                    <form>
+                        <div class="form-group mt-2">
+                            <label for="cedula">Cédula:</label>
+                            <input type="number" class="form-control" id ="cedula">
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input id ="nombre" type="text" class="form-control"/>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="apellido">Apellido:</label>
+                            <input id ="apellido" type="text" class="form-control"/>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input id ="direccion" type="text" class="form-control"/>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="telefono">Teléfono:</label>
+                            <input id ="telefono" type="number" class="form-control"/>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="nacimiento">Fecha de Nacimiento:</label>
+                            <input id ="nacimiento" type="datetime-local" class="form-control"/>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="pais">País</label>
+                                <select class="form-control" name="" id="pais"></select>
+                            </div>
+            
+                            <div class="form-group col-md-6">
+                                <label for="ciudad">Ciudad</label>
+                                <select class="form-control" name="" id="ciudad"></select>
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            <button id="enviar" type="submit" class="mt-4 text-uppercase btn btn-primary mx-auto d-block fs-5">Enviar</button>
+                        </div>       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>          
+
+    <!--Tabla de pacientes-->
+    <section class="bg-secondary-subtle">
+        <div class="container">
+            <h2 class="text-center">Tabla Pacientes</h2>
+            <h2 class="border-bottom border-primary border-3 pb-2"></h2>
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover caption-top" id="tabla_paciente">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Fecha Nacimiento</th>
+                            <th>País</th>
+                            <th>Ciudad</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>   
+        </div>
+    </section>
+
+    <!--Tabla de consultas-->
+    <section class="bg-white-subtle">
+        <div class="container">
+            <h2 class="text-center">Tabla Consultas</h2>
+            <h2 class="border-bottom border-primary border-3 pb-2"></h2>
+            <div class="row" id="div_consultas">
+                <table class="table table-sm table-striped table-hover caption-top" id="table_consultas">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Paciente</th>
+                            <th>Fecha Consulta</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!--Tabla de consultas-->
+    <section class="bg-secondary-subtle">
+        <div class="container">
+            <h2 class="text-center">Tabla Hijos</h2>
+            <h2 class="border-bottom border-primary border-3 pb-2"></h2>
+            <div class="row" id="div_hijos">
+                <table class="table table-sm table-striped table-hover caption-top" id="table_hijos">
+                    <thead>
+                        <tr class="table-primary">
+                            <th>Paciente</th>
+                            <th>Cédula Hijos</th>
+                            <th>Parentesco</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="bg-white-subtle text-center mt-2">
+        &copy; Jonathan Ortega
+    </footer>
+    
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

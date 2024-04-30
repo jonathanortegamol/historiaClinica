@@ -1,0 +1,35 @@
+$primary: #19627f;
+
+
+$theme-colors: (
+    "primary": $primary,
+    
+);
+
+#profile-pic{
+    max-height: 500px;
+}
+
+#get-image{
+    display: none;
+}
+
+section{
+    padding: 50px 0;
+}
+
+.btn-primary{
+    color: #0a96bc;
+    font-weight: bolder;
+}
+
+.form-group{
+    padding: 5px;
+}
+
+#enviar{
+    width: 50%;
+}
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";
+
