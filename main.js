@@ -217,4 +217,53 @@ function validarFechaYCalcularEdad() {
 }
 
 
-//Cargar tabla pacientes
+//Cargar tabla consultas
+var tblConsulta = document.getElementById('table_consultas');
+var myBodyConsulta = tblConsulta.createTBody();
+
+window.addEventListener('load',updateTableConsultas);
+
+var consultas = new Array(
+    {nombre:"Jonathan",date:"2023-04-25",obs:"El paciente muestra signos de cansancio"},
+    {nombre:"Jonathan",date:"2024-04-25",obs:"El paciente ha mejorado"},
+    {nombre:"Anita",date:"2022-04-23",obs:"Observacion para el paciente Anita"},
+    {nombre:"Jhony",date:"2023-02-03",obs:"Observacion para el paciente Jhony"}
+);
+
+function updateTableConsultas(){
+    // Iterar sobre los datos y agregar filas a la tabla
+    for(i=0; i<consultas.length; i++){
+        var r = myBodyConsulta.insertRow();
+        var cnombre = r.insertCell();
+        var cdate = r.insertCell();
+        var cobs = r.insertCell();
+
+        cnombre.innerHTML = consultas[i].nombre;
+        cdate.innerHTML = consultas[i].date;
+        cobs.innerHTML = consultas[i].obs;
+    }
+}
+
+//Cargar tabla hijos
+var tblHijos = document.getElementById('table_hijos');
+var myBodyHijos = tblHijos.createTBody();
+
+window.addEventListener('load', updateTableHijos);
+
+var hijos = new Array(
+    {paciente:"Jhony",ci:"0104515713", parentesco:"Padre-Hijo"},
+    {paciente:"Anita",ci:"0104515713", parentesco:"Madre-Hijo"}
+);
+
+function updateTableHijos(){
+for (i=0;i<hijos.length;i++){
+    var r = myBodyHijos.insertRow();
+    var cpaciente = r.insertCell();
+    var cci = r.insertCell();
+    var cparentesco = r.insertCell();
+
+    cpaciente.innerHTML = hijos[i].paciente;
+    cci.innerHTML = hijos[i].ci;
+    cparentesco.innerHTML = hijos[i].parentesco;
+}
+}
